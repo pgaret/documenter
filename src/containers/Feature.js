@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {Panel} from 'react-bootstrap'
+import {Link} from 'react-router'
+import {createNewArticle} from '../actions/index'
 import Subfeature from '../components/Subfeature'
 
 class Feature extends Component {
@@ -10,6 +13,11 @@ class Feature extends Component {
       let sf = props.subfeatures[i]
       this.state.subfeatures.push(<Subfeature key={i+(i/10 + 1)} name={sf.name} description={sf.description} _id={sf._id} f_id={props._id} />)
     }
+    this.makeNewSubfeature = this.makeNewSubfeature.bind(this)
+  }
+
+  makeNewSubfeature(){
+    this.props.newArticle(this.props._id)
   }
 
   componentWillReceiveProps(nextProps){
@@ -21,12 +29,26 @@ class Feature extends Component {
   }
 
   render() {
+    let link = '/features/new'
     return (
       <Panel header={this.props.name}>
         {this.state.subfeatures}
+        <Link onClick={this.makeNewSubfeature} to={link}>+</Link>
       </Panel>
     )
   }
 }
 
-export default Feature
+const mapStateToProps = state => {
+  return {features: state.features}
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    newArticle: (f_id) => {
+      dispatch(createNewArticle(f_id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feature)

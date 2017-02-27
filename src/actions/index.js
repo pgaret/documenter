@@ -52,6 +52,10 @@ export const setDefaultArticle = () => {
   return {type: 'SET_ARTICLE', payload: {name: 'Kustomer', description: 'Awesome Customer Service Startup', edit: false, saved: false}}
 }
 
+export const createNewArticle = (f_id) => {
+  return {type: 'NEW_ARTICLE', payload: {f_id: f_id}}
+}
+
 export const editArticle = () => {
   return {type: 'EDIT_ARTICLE'}
 }
@@ -84,12 +88,12 @@ export const handleEditing = (article) => {
 
 export const saveArticle = (article) => {
   return function(dispatch){
-    // console.log(article)
-    axios({method: 'PATCH', url:'https://kustomer-api.herokuapp.com/api/v1/features/'+article.f_id+"/"+article._id, data: article}).then(result=>{
-      dispatch(handleSaving(article))
-    }).catch(response=>{
-      //  console.log(response)
-    })
+    console.log(article)
+    // axios({method: 'PATCH', url:'https://kustomer-api.herokuapp.com/api/v1/features/'+article.f_id+"/"+article._id, data: article}).then(result=>{
+    //   dispatch(handleSaving(article))
+    // }).catch(response=>{
+    //   //  console.log(response)
+    // })
   }
 }
 

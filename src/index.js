@@ -23,6 +23,7 @@ ReactDOM.render((
       <Route path='/' component={App}>
         <Route path='/features/:feature_name' />
         <Route path='/features/edit/:feature_name' />
+        <Route path='/features/new' />
       </Route>
     </Router>
   </Provider>

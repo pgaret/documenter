@@ -5,7 +5,7 @@ import {Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import {saveArticle, finishArticle} from '../actions/index.js'
 import './components.css'
 
-class EditArticle extends Component {
+class NewArticle extends Component {
   constructor(props){
     super(props)
     this.saveTheArticle = this.saveTheArticle.bind(this)
@@ -17,6 +17,10 @@ class EditArticle extends Component {
     return name.replace(/\s/g, "").toLowerCase()
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps)
+  }
+
   saveTheArticle(event){
     let new_article = {}
     for (let i = 0; i < event.target.parentElement.children.length; i++) {
@@ -24,8 +28,6 @@ class EditArticle extends Component {
         new_article[event.target.parentElement.children[i].id] = event.target.parentElement.children[i].value
       }
     }
-    let f_id = this.props.article.article._id ? this.props.article.article._id : this.props.article.article.f_id
-    console.log(this.props.article)
     this.props.saveArticle({...new_article, _id: this.props.article.article._id, f_id: this.props.article.article.f_id})
   }
 
@@ -73,4 +75,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditArticle)
+export default connect(mapStateToProps, mapDispatchToProps)(NewArticle)

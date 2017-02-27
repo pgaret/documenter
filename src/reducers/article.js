@@ -1,6 +1,9 @@
 export default function article(state = [], action){
   let new_article = {}
   switch(action.type){
+    case 'NEW_ARTICLE':
+      let new_article = {name: '', description: '', f_id: action.payload.f_id, edit: true, saved: false}
+      return {article: new_article}
     case 'SET_ARTICLE':
       return {...state, article: action.payload}
     case 'EDIT_ARTICLE':
