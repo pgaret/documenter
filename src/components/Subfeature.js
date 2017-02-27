@@ -14,6 +14,7 @@ class Subfeature extends Component {
   }
 
   setTheArticle(){
+    console.log("Setting article")
     this.props.setNewArticle({name: this.props.name, description: this.props.description, _id: this.props._id, f_id: this.props.f_id})
   }
 

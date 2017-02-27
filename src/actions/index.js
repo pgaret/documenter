@@ -7,7 +7,7 @@ export const loadPeople = (people) => {
 export const queryPeople = () => {
   return function(dispatch){
     axios({method:'GET', url:'https://kustomer-api.herokuapp.com/api/v1/team'}).then(result=>{
-      dispatch(loadPeople(result.data.people))
+      dispatch(loadPeople(result.data.team))
     }).catch(response=>{
       // console.log(response)
     })
@@ -21,7 +21,6 @@ export const loadProjects = (projects) => {
 export const queryProjects = () => {
   return function(dispatch){
     axios({method:'GET', url:'https://kustomer-api.herokuapp.com/api/v1/projects'}).then(result=>{
-      console.log(result)
       dispatch(loadProjects(result.data.projects))
     }).catch(response=>{
       // console.log(response)

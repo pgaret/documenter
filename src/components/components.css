@@ -1,13 +1,3 @@
-@@font-face {
-  font-family: KFont1;
-  src: url('../../public/KustomerFont1.woff') format('woff')
-}
-
-@@font-face {
-  font-family: KFont2;
-  src: url('../../public/KustomerFont2.woff') format('woff')
-}
-
 *{
   padding: 0;
   margin: 0;

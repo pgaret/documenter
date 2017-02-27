@@ -16,7 +16,7 @@ class Article extends Component {
 
   render(){
     return (
-      <div className='col-md-6 article'>
+      <div className='col-md-6 col-sm-6 col-6 article'>
         <Button onClick={this.editModeOn} className='article--edit_button' bsStyle='primary'>Edit</Button>
         <p className='article--name'>{this.props.article.article.name}</p>
         <p className='article--desc'>{this.props.article.article.description}</p>
