@@ -1,3 +1,4 @@
+import {browserHistory} from 'react-router'
 import axios from 'axios'
 
 export const loadPeople = (people) => {
@@ -47,6 +48,7 @@ export const setArticle = (article) => {
 }
 
 export const setDefaultArticle = () => {
+  browserHistory.push('/')
   return {type: 'SET_ARTICLE', payload: {name: 'Kustomer', description: 'Awesome Customer Service Startup', edit: false, saved: false}}
 }
 
@@ -82,6 +84,7 @@ export const handleEditing = (article) => {
 
 export const saveArticle = (article) => {
   return function(dispatch){
+    // console.log(article)
     axios({method: 'PATCH', url:'https://kustomer-api.herokuapp.com/api/v1/features/'+article.f_id+"/"+article._id, data: article}).then(result=>{
       dispatch(handleSaving(article))
     }).catch(response=>{
@@ -92,7 +95,7 @@ export const saveArticle = (article) => {
 
 export const finishArticle = (article) => {
   return function(dispatch){
-    console.log(article)
+    // console.log(article)
     axios({method: 'PATCH', url:'https://kustomer-api.herokuapp.com/api/v1/features/'+article.f_id+"/"+article._id, data: article}).then(result=>{
       dispatch(handleEditing(article))
     }).catch(response=>{

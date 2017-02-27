@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 import {setArticle} from '../actions/index.js'
 import './components.css'
 
@@ -14,14 +15,14 @@ class Subfeature extends Component {
   }
 
   setTheArticle(){
-    console.log("Setting article")
     this.props.setNewArticle({name: this.props.name, description: this.props.description, _id: this.props._id, f_id: this.props.f_id})
   }
 
   render() {
+    let link = this.parseName('/features/'+this.props.name)
     return (
       <div className='sidebar--subfeature'>
-        <a onClick={this.setTheArticle} href="#">{this.props.name}</a>
+        <Link onClick={this.setTheArticle} to={link}>{this.props.name}</Link>
       </div>
     )
   }

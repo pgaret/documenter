@@ -21,6 +21,8 @@ ReactDOM.render((
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={App}>
+        <Route path='/features/:feature_name' />
+        <Route path='/features/edit/:feature_name' />
       </Route>
     </Router>
   </Provider>

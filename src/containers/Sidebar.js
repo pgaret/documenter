@@ -15,6 +15,7 @@ class Sidebar extends Component {
       this.state.features = []
       for (let i = 0; i < nextProps.features.features.length; i++){
         let feature = nextProps.features.features[i]
+        // console.log(feature.subfeatures)
         this.state.features.push(<Feature key={i+(i/10 + 1)} name={feature.name} subfeatures={feature.subfeatures} _id={feature._id} />)
       }
     }
