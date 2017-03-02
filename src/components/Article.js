@@ -20,18 +20,11 @@ class Article extends Component {
     return name.replace(/\s/g, "").toLowerCase()
   }
 
-  componentWillReceiveProps(nextProps){
-    this.state.editable = true
-  }
-
   render(){
     let link = this.parseName('/features/edit/'+this.props.article.article.name)
-    let edit_button = this.state.editable ?
-        <Link onClick={this.editModeOn} to={link}><Button className='article--edit_button' bsStyle='primary'>Edit</Button></Link> :
-        <span />
     return (
       <div className='col-md-6 col-sm-6 col-6 article'>
-        {edit_button}
+        <Link onClick={this.editModeOn} to={link}><Button className='article--edit_button' bsStyle='primary'>Edit</Button></Link>
         <p className='article--name'>{this.props.article.article.name}</p>
         <p className='article--desc'>{this.props.article.article.description}</p>
       </div>

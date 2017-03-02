@@ -7,6 +7,9 @@ import { Router, Route, browserHistory } from 'react-router'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import App from './containers/App';
+import Article from './components/Article'
+import EditArticle from './components/EditArticle'
+import NewArticle from './components/NewArticle'
 import {queryPeople, queryProjects, queryFeatures, setDefaultArticle} from './actions/index'
 import rootReducer from './reducers'
 
@@ -21,9 +24,9 @@ ReactDOM.render((
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={App}>
-        <Route path='/features/:feature_name' />
-        <Route path='/features/edit/:feature_name' />
-        <Route path='/features/new' />
+        <Route path='/features/edit/:feature_name' component={EditArticle} />
+        <Route path='/features/new' component={NewArticle} />
+        <Route path='/features/:feature_name' component={Article} />
       </Route>
     </Router>
   </Provider>

@@ -8,22 +8,19 @@ import Sidebar from './Sidebar'
 class App extends Component {
   constructor(props){
     super(props)
-    this.state = {edit: false}
+    this.state = {edit: false, new: false}
   }
 
   componentWillReceiveProps(nextProps){
-    this.state.edit = nextProps.article.article.edit
   }
 
   render() {
-    let article = this.state.edit ? <EditArticle /> : <Article />
     return (
       <div>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />
         <Title />
         <Sidebar />
-        {article}
         {this.props.children}
       </div>
     );
