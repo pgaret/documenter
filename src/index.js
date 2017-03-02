@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, browserHistory, hashHistory } from 'react-router'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import App from './containers/App';
@@ -15,8 +15,6 @@ import rootReducer from './reducers'
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
-browserHistory.push('/')
-
 store.dispatch(queryPeople())
 store.dispatch(queryProjects())
 store.dispatch(queryFeatures())
@@ -24,7 +22,7 @@ store.dispatch(setDefaultArticle())
 
 ReactDOM.render((
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
       <Route path='/' component={App}>
         <Route path='/features/edit/:feature_name' component={EditArticle} />
         <Route path='/features/new' component={NewArticle} />

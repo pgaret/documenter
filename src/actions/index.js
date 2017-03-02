@@ -1,4 +1,4 @@
-import {browserHistory} from 'react-router'
+import {browserHistory, hashHistory} from 'react-router'
 import axios from 'axios'
 
 const URL='https://kustomer-api.herokuapp.com/api/v1/'
@@ -51,7 +51,7 @@ export const setArticle = (article) => {
 }
 
 export const setDefaultArticle = () => {
-  browserHistory.push('/')
+  hashHistory.push('/')
   return {type: 'SET_ARTICLE', payload: {name: 'Kustomer', description: 'Awesome Customer Service Startup', edit: false, saved: false}}
 }
 
@@ -125,7 +125,7 @@ export const newArticle = (article) => {
       article.id=result.data.result._id.$oid
       dispatch(finishEditing(article))
       dispatch(createNewSubfeature(article))
-      browserHistory.push('features/'+parseName(article.name))
+      hashHistory.push('features/'+parseName(article.name))
     }).catch(response=>{
        console.log(response)
     })
