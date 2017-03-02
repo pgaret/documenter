@@ -6,7 +6,7 @@ import './components.css'
 class Title extends Component {
   constructor(props){
     super(props)
-    this.state = {team: [], projects: []}
+    this.state = {team: [], projects: [], features: []}
   }
 
   componentWillReceiveProps(nextProps){
@@ -22,6 +22,13 @@ class Title extends Component {
         this.state.projects.push(<MenuItem key={2+(.1*(i+1))}>{nextProps.projects.projects[i].name}</MenuItem>)
       }
     }
+    if (nextProps.features.features.length !== this.state.features.length){
+      this.state.features = []
+      for (let i = 0; i < nextProps.features.features.length; i++){
+        this.state.features.push(<MenuItem key={2+(.1*(i+1))}>{nextProps.features.features[i].name}</MenuItem>)
+      }
+    }
+    console.log(nextProps.features.features)
   }
 
   render(){
@@ -33,13 +40,15 @@ class Title extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav bsStyle='pills' className='navbar--options'>
-          <NavDropdown eventKey={1} title='Team' id='nav-dropdown'>
-            {this.state.team}
+          <NavDropdown eventKey={3} title='Technology' id='nav-dropdown'>
+            {this.state.features}
           </NavDropdown>
           <NavDropdown eventKey={2} title='Projects' id='nav-dropdown'>
             {this.state.projects}
           </NavDropdown>
-          <NavItem eventKey={3} href="#">Technology</NavItem>
+          <NavDropdown eventKey={1} title='Team' id='nav-dropdown'>
+            {this.state.team}
+          </NavDropdown>
         </Nav>
       </Navbar>
     )
@@ -47,7 +56,7 @@ class Title extends Component {
 }
 
 const mapStateToProps = state => {
-  return {team: state.people, projects: state.projects}
+  return {team: state.people, projects: state.projects, features: state.features}
 }
 
 export default connect(mapStateToProps, {})(Title)

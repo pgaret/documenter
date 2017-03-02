@@ -2,7 +2,9 @@ import {browserHistory, hashHistory} from 'react-router'
 import axios from 'axios'
 
 const URL='https://kustomer-api.herokuapp.com/api/v1/'
+const WINDOW_URL='https://kustomer-wiki.herokuapp.com/'
 // const URL='http://localhost:9000/api/v1/'
+// const WINDOW_URL='http://localhost:3000/'
 
 export const loadPeople = (people) => {
   return {type: 'GET_PEOPLE', payload: people}
@@ -51,7 +53,10 @@ export const setArticle = (article) => {
 }
 
 export const setDefaultArticle = () => {
-  hashHistory.push('/')
+  console.log(hashHistory)
+  console.log(window.location.href)
+  console.log(WINDOW_URL+"#/")
+  if (window.location.href !== WINDOW_URL+"#/") { hashHistory.push('/') }
   return {type: 'SET_ARTICLE', payload: {name: 'Kustomer', description: 'Awesome Customer Service Startup', edit: false, saved: false}}
 }
 

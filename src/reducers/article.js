@@ -5,7 +5,7 @@ export default function article(state = [], action){
       let new_article = {name: '', description: '', f_id: action.payload.f_id, edit: true, saved: false}
       return {article: new_article}
     case 'SET_ARTICLE':
-      return {...state, article: action.payload}
+      return {...state, article: action.payload, edit: false, saved: false}
     case 'EDIT_ARTICLE':
       new_article = {name: state.article.name, description: state.article.description, _id: state.article._id, f_id: state.article.f_id, edit: true, saved: false}
       return {...state, article: new_article}
