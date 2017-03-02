@@ -1,8 +1,8 @@
 import {browserHistory} from 'react-router'
 import axios from 'axios'
 
-const URL='https://kustomer-api.herokuapp.com/api/v1/'
-// const URL='http://localhost:9000/api/v1/'
+// const URL='https://kustomer-api.herokuapp.com/api/v1/'
+const URL='http://localhost:9000/api/v1/'
 
 export const loadPeople = (people) => {
   return {type: 'GET_PEOPLE', payload: people}
@@ -83,13 +83,30 @@ export const saveArticle = (article) => {
   }
 }
 
-//
+export const settingFeatureName = () => {
+  return {type: 'SETTING_FEATURE_NAME'}
+}
+
+export const finishFeature = (feature) => {
+  return {type: 'CREATE_FEATURE', payload: {feature: feature}}
+}
+
+export const createNewFeature = (name) => {
+  return function(dispatch){
+    console.log(name)
+    axios({method: 'POST', url:URL+'features/new', data: {name: name}}).then(result=>{
+      console.log(result)
+      dispatch(finishFeature(result.data))
+    })
+  }
+}
+
 export const createNewArticle = (f_id) => {
   return {type: 'NEW_ARTICLE', payload: {f_id: f_id}}
 }
 
-export const createNewFeature = (article) => {
-  return {type: 'ADD_FEATURES', payload: {article: article}}
+export const createNewSubfeature = (article) => {
+  return {type: 'ADD_SUBFEATURE', payload: {article: article}}
 }
 
 export const finishPosting = (article) => {
@@ -107,7 +124,7 @@ export const newArticle = (article) => {
       console.log(result)
       article.id=result.data.result._id.$oid
       dispatch(finishEditing(article))
-      dispatch(createNewFeature(article))
+      dispatch(createNewSubfeature(article))
       browserHistory.push('features/'+parseName(article.name))
     }).catch(response=>{
        console.log(response)
