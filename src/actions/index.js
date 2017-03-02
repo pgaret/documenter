@@ -1,8 +1,8 @@
 import {browserHistory} from 'react-router'
 import axios from 'axios'
 
-// const URL='https://kustomer-api.herokuapp.com/api/v1/'
-const URL='http://localhost:9000/api/v1/'
+const URL='https://kustomer-api.herokuapp.com/api/v1/'
+// const URL='http://localhost:9000/api/v1/'
 
 export const loadPeople = (people) => {
   return {type: 'GET_PEOPLE', payload: people}
