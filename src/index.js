@@ -15,6 +15,8 @@ import rootReducer from './reducers'
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
+browserHistory.push('/')
+
 store.dispatch(queryPeople())
 store.dispatch(queryProjects())
 store.dispatch(queryFeatures())
