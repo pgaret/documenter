@@ -21,8 +21,8 @@ export default function features(state = [{setting: false}], action){
         }
         state_features.find(item=>{return item._id === action.payload.f_id}).subfeatures.push(action.payload)
       }
-      console.log(action.payload)
-      console.log(state_features)
+      // console.log(action.payload)
+      // console.log(state_features)
       return {features: state_features}
     case 'CREATE_FEATURE':
       state_features = state.features

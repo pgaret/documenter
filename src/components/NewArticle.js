@@ -17,7 +17,7 @@ class NewArticle extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps)
+    // console.log(nextProps)
   }
 
   saveTheArticle(event){
@@ -31,7 +31,7 @@ class NewArticle extends Component {
   }
 
   render(){
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div className='col-md-6 col-sm-6 col-6 article'>
         <FormGroup controlId='formControlsTextarea'>

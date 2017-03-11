@@ -10,7 +10,7 @@ class Article extends Component {
     super(props)
     this.editModeOn = this.editModeOn.bind(this)
     this.state = {editable: false}
-    console.log(props)
+    // console.log(props)
   }
 
   editModeOn(event){
@@ -30,10 +30,10 @@ class Article extends Component {
             nextProps.setTheArticle(nextProps.features.features[i].subfeatures[j])
             break;
           }
-          console.log(i)
+          // console.log(i)
         }
       }
-      console.log("EMPTY")
+      // console.log("EMPTY")
     }
   }
 

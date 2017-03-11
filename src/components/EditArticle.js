@@ -24,7 +24,7 @@ class EditArticle extends Component {
         new_article[parent.children[i].id] = parent.children[i].value
       }
     }
-    console.log(this.props)
+    // console.log(this.props)
     this.props.saveArticle({...new_article, _id: this.props.article._id, f_id: this.props.article.f_id, result: event.target.id})
   }
 

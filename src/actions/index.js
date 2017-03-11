@@ -70,7 +70,7 @@ export const createNewArticle = (f_id) => {
 
 export const saveArticle = (article) => {
   return function(dispatch){
-    console.log(article)
+    // console.log(article)
     axios({method: 'PATCH', url:URL+'features/'+article.f_id+"/"+article._id, data: article}).then(result=>{
       if (article.result === 'save'){
         dispatch(saveArticleToState(article))
@@ -89,9 +89,9 @@ export const saveArticle = (article) => {
 
 export const addFeatureToDb = (name) => {
   return function(dispatch){
-    console.log(name)
+    // console.log(name)
     axios({method: 'POST', url:URL+'features/new', data: {name: name}}).then(result=>{
-      console.log(result)
+      // console.log(result)
       dispatch(addFeatureToState(result.data))
     })
   }
@@ -99,14 +99,14 @@ export const addFeatureToDb = (name) => {
 
 export const addArticleToDb = (article) => {
   return function(dispatch){
-    console.log(article)
+    // console.log(article)
     axios({method: 'POST', url:URL+'features/'+article.f_id+"/new", data: article}).then(result=>{
       article._id=result.data.result._id
       dispatch(finishArticleInState(article))
       dispatch(addSubfeatureToState(article))
       hashHistory.push('features/'+article.f_id+"/"+result.data.result._id)
     }).catch(response=>{
-       console.log(response)
+      //  console.log(response)
     })
   }
 }
