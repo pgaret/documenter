@@ -1,20 +1,17 @@
 export default function article(state = [], action){
-  let new_article = {}
   switch(action.type){
     case 'NEW_ARTICLE':
-      let new_article = {name: '', description: '', f_id: action.payload.f_id, edit: true, saved: false}
-      return {article: new_article}
+      return {name: '', description: '', f_id: action.payload.f_id, edit: true, saved: false}
     case 'SET_ARTICLE':
-      return {...state, article: action.payload, edit: false, saved: false}
+      return {name: action.payload.name, description: action.payload.description, _id: action.payload._id, f_id: action.payload.f_id, edit: false, saved: false}
     case 'EDIT_ARTICLE':
-      new_article = {name: state.article.name, description: state.article.description, _id: state.article._id, f_id: state.article.f_id, edit: true, saved: false}
-      return {...state, article: new_article}
+      console.log(state)
+      return {name: state.name, description: state.description, _id: state._id, f_id: state.f_id, edit: true, saved: false}
     case 'SAVE_ARTICLE':
-      new_article = {name: action.payload.article.name, description: action.payload.article.description, _id: action.payload.article._id, f_id: state.article.f_id, edit: true, saved: false}
-      return {...state, article: new_article}
+      return {name: action.payload.name, description: action.payload.description, _id: action.payload._id, f_id: state.f_id, edit: true, saved: false}
     case 'FINISH_ARTICLE':
-      new_article = {name: action.payload.article.name, description: action.payload.article.description, _id: action.payload.article._id, f_id: state.article.f_id, edit: false, saved: false}
-      return {...state, article: new_article}
+      console.log(action.payload)
+      return {name: action.payload.name, description: action.payload.description, _id: action.payload._id, f_id: state.f_id, edit: false, saved: false}
     default:
       return state
   }

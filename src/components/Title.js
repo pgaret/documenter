@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
+import {linkArticle} from '../actions/index.js'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import './components.css'
 
@@ -7,6 +9,15 @@ class Title extends Component {
   constructor(props){
     super(props)
     this.state = {team: [], projects: [], features: []}
+    this.linkArticle = this.linkArticle.bind(this)
+  }
+
+  parseName(name){
+    return name.replace(/\s/g, "").toLowerCase()
+  }
+
+  linkArticle(feature){
+    debugger
   }
 
   componentWillReceiveProps(nextProps){
@@ -25,10 +36,10 @@ class Title extends Component {
     if (nextProps.features.features.length !== this.state.features.length){
       this.state.features = []
       for (let i = 0; i < nextProps.features.features.length; i++){
-        this.state.features.push(<MenuItem key={2+(.1*(i+1))}>{nextProps.features.features[i].name}</MenuItem>)
+        let link = this.parseName('/features/'+nextProps.features.features[i].name)
+        this.state.features.push(<MenuItem onClick={()=>{this.linkArticle(nextProps.features.features[i])}} key={2+(.1*(i+1))}>{nextProps.features.features[i].name}</MenuItem>)
       }
     }
-    console.log(nextProps.features.features)
   }
 
   render(){
@@ -36,20 +47,9 @@ class Title extends Component {
       <Navbar bsStyle={null} className='navbar--title'>
         <Navbar.Header>
           <Navbar.Brand>
-            <img src={'https://www.kustomer.com/frassets/images/kustomer_footer.3c3537.svg'} />
+            <h1>Your Logo Here</h1>
           </Navbar.Brand>
         </Navbar.Header>
-        <Nav bsStyle='pills' className='navbar--options'>
-          <NavDropdown eventKey={3} title='Technology' id='nav-dropdown'>
-            {this.state.features}
-          </NavDropdown>
-          <NavDropdown eventKey={2} title='Projects' id='nav-dropdown'>
-            {this.state.projects}
-          </NavDropdown>
-          <NavDropdown eventKey={1} title='Team' id='nav-dropdown'>
-            {this.state.team}
-          </NavDropdown>
-        </Nav>
       </Navbar>
     )
   }
@@ -59,4 +59,12 @@ const mapStateToProps = state => {
   return {team: state.people, projects: state.projects, features: state.features}
 }
 
-export default connect(mapStateToProps, {})(Title)
+const mapDispatchToProps = dispatch => {
+  return {
+    linkArticle: (article) => {
+      dispatch(linkArticle(article))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Title)

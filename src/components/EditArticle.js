@@ -24,12 +24,12 @@ class EditArticle extends Component {
         new_article[parent.children[i].id] = parent.children[i].value
       }
     }
-    console.log(new_article)
-    this.props.saveArticle({...new_article, _id: this.props.article.article._id, f_id: this.props.article.article.f_id, result: event.target.id})
+    console.log(this.props)
+    this.props.saveArticle({...new_article, _id: this.props.article._id, f_id: this.props.article.f_id, result: event.target.id})
   }
 
   render(){
-    let link = '/features/'+this.parseName(this.props.article.article.name)
+    let link = '/features/'+this.parseName(this.props.article.name)
     return (
       <div className='col-md-6 col-sm-6 col-6 article'>
         <FormGroup controlId='formControlsTextarea'>
@@ -37,9 +37,9 @@ class EditArticle extends Component {
           <Link  onClick={this.saveTheArticle} id='finish' to={link}><Button id='finish' className='article--edit_button' bsStyle='primary'>Done</Button></Link>
           <br/>
           <ControlLabel>Name</ControlLabel>
-          <FormControl className='text' id='name' componentClass='textarea' placeholder='Article Name' defaultValue={this.props.article.article.name} />
+          <FormControl className='text' id='name' componentClass='textarea' placeholder='Article Name' defaultValue={this.props.article.name} />
           <ControlLabel>Description</ControlLabel>
-          <FormControl className='text' id='description' componentClass='textarea' placeholder='Article Description' defaultValue={this.props.article.article.description} />
+          <FormControl className='text' id='description' componentClass='textarea' placeholder='Article Description' defaultValue={this.props.article.description} />
         </FormGroup>
       </div>
     )
@@ -48,7 +48,7 @@ class EditArticle extends Component {
 }
 
 const mapStateToProps = state => {
-  return {article: state.article}
+  return {article: state.article, features: state.features}
 }
 
 const mapDispatchToProps = dispatch => {

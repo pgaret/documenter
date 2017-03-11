@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import {Panel,Button} from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {settingFeatureName, createNewFeature} from '../actions/index'
+import {settingFeatureName, addFeatureToDb} from '../actions/index'
 
 class NewFeature extends Component {
   constructor(props){
@@ -23,11 +24,10 @@ class NewFeature extends Component {
   }
 
   render(){
-    let current = this.state.clicked ?
-      <div><input /><button onClick={this.handleSubmit}>Submit</button><button onClick={this.handleClick}>Cancel</button></div> :
-      <a href="#" onClick={this.handleClick}>+</a>
     return(
-      <div>{current}</div>
+      this.state.clicked ?
+      <div><input /><button onClick={this.handleSubmit}>Submit</button><button onClick={this.handleClick}>Cancel</button></div> :
+      <Button onClick={this.handleClick}>Add Feature</Button>
     )
   }
 }
@@ -42,7 +42,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(settingFeatureName())
     },
     createFeature: (name) => {
-      dispatch(createNewFeature(name))
+      dispatch(addFeatureToDb(name))
     }
   }
 }

@@ -28,8 +28,12 @@ class Feature extends Component {
     }
   }
 
+  parseName(name){
+    return name.replace(/\s/g, "").toLowerCase()
+  }
+
   render() {
-    let link = '/features/new'
+    let link = '/features/'+this.props._id+'/new'
     return (
       <Panel header={this.props.name}>
         {this.state.subfeatures}

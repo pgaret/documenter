@@ -19,7 +19,6 @@ class App extends Component {
       <div>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />
-        <Title />
         <Sidebar />
         {this.props.children}
       </div>

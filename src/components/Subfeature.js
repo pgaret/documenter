@@ -1,28 +1,28 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
-import {setArticle} from '../actions/index.js'
+import {setArticleInState} from '../actions/index.js'
 import './components.css'
 
 class Subfeature extends Component {
   constructor(props){
     super(props)
-    this.setTheArticle = this.setTheArticle.bind(this)
+    this.setArticle = this.setArticle.bind(this)
   }
 
   parseName(name){
     return name.replace(/\s/g, "").toLowerCase()
   }
 
-  setTheArticle(){
-    this.props.setNewArticle({name: this.props.name, description: this.props.description, _id: this.props._id, f_id: this.props.f_id})
+  setArticle(){
+    this.props.setArticleInState({name: this.props.name, description: this.props.description, _id: this.props._id, f_id: this.props.f_id})
   }
 
   render() {
-    let link = this.parseName('/features/'+this.props.name)
+    let link = this.parseName('/features/'+this.props.f_id+"/"+this.props._id)
     return (
       <div className='sidebar--subfeature'>
-        <Link onClick={this.setTheArticle} to={link}>{this.props.name}</Link>
+        <Link onClick={this.setArticle} to={link}>{this.props.name}</Link>
       </div>
     )
   }
@@ -34,8 +34,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setNewArticle: (article) => {
-      dispatch(setArticle(article))
+    setArticleInState: (article) => {
+      dispatch(setArticleInState(article))
     }
   }
 }
