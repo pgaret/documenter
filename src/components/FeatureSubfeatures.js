@@ -6,7 +6,7 @@ class FeatureSubfeatures extends Component {
   }
   render(){
     return (
-      <p>Subfeatures</p>
+      <p></p>
     )
   }
 }

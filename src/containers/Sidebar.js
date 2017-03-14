@@ -32,11 +32,9 @@ class Sidebar extends Component {
     }
     return (
       <div className='col-md-4 col-sm-4 col-4 sidebar'>
-        <ButtonGroup>
+        {/* <ButtonGroup>
           <Button>Product</Button>
-          <Button>Projects</Button>
-          <Button>Team</Button>
-        </ButtonGroup>
+        </ButtonGroup> */}
         <br />
         <br />
         {current_buttons}

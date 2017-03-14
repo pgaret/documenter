@@ -37,7 +37,8 @@ class Feature extends Component {
     return (
       <Panel header={this.props.name}>
         {this.state.subfeatures}
-        <Link onClick={this.makeNewSubfeature} to={link}>+</Link>
+        <br />
+        <Link onClick={this.makeNewSubfeature} to={link}>Add Subfeature</Link>
       </Panel>
     )
   }
